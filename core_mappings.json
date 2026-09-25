@@ -1,0 +1,82 @@
+{
+    "indicators": {
+        "3-month EURIBOR": ["EURIBOR_3M", "%"],
+        "Headline HICP": ["HICP", "%"],
+        "1-month OIS Rate": ["OIS_1M", "%"],
+        "1-Year AAA Yield Forward Rate": ["AAA_1Y", "%"],
+        "Demand-driven HICPX": ["HICPX_DEMAND", "%"],
+        "Supply-driven HICPX": ["HICPX_SUPPLY", "%"],
+        "Monetary Policy Shock": ["MP_SHOCK", "%"]
+    },
+    "sources": {
+        "EURIBOR_3M": ["ECB_API"],
+        "HICP": ["ECB_API", "OFFLINE"],
+        "OIS_1M": ["ECB_API"],
+        "AAA_1Y": ["ECB_API"],
+        "HICPX_DEMAND": ["OFFLINE"],
+        "HICPX_SUPPLY": ["OFFLINE"],
+        "MP_SHOCK": ["GITHUB_JK", "OFFLINE"]
+    },
+    "source_mappings": {
+        "ECB_API": {        
+            "EURIBOR_3M": [
+                "FM",
+                "M.U2.EUR.RT.MM.EURIBOR3MD_.HSTA",
+                "%"
+        ],
+            "HICP": [
+                "HICP",
+                "M.U2.N.000000.4D0.ANR",
+                "%"
+        ],
+            "OIS_1M": [
+                "MMSR",
+                "B.U2._X._Z.S1ZV._Z.O._X.WR._X.FE._Z._Z.EUR._Z",
+                "%"
+        ],
+            "AAA_1Y": [
+                "YC",
+                "B.U2.EUR.4F.G_N_A.SV_C_YM.SR_1Y",
+                "%"
+            ]
+    },
+        "OFFLINE": {
+            "HICP": [
+                "provisional_dataset.csv",
+                "HICP_All_Items",
+                "%"
+        ],
+            "HICPX_DEMAND": [
+                "inflation_decomp_goncalves.csv",
+                "Demand_Driven",
+                "%"
+        ],
+            "HICPX_SUPPLY": [
+                "inflation_decomp_goncalves.csv",
+                "Supply_Driven",
+                "%"
+        ],
+            "MP_SHOCK": [
+                "shocks_ecb_mpd_me_d.csv",
+                "MP_median",
+                "%"
+            ]
+    },
+        "GITHUB_JK": {
+            "MP_SHOCK": [
+                "marekjarocinski",
+                "jkshocks_update_ecb",
+                "shocks_ecb_mpd_me_d.csv",
+                "MP_median",
+                "%"
+            ]
+        }
+    },
+    "model_definitions": {
+        "layer1_test_selection": ["EURIBOR_3M", "HICP"],
+        "model_0.1" : ["AAA_1Y", "OIS_1M", "HICPX_DEMAND", "HICPX_SUPPLY"],
+        "model_1.0": ["AAA_1Y", "MP_SHOCK", "HICPX_DEMAND", "HICPX_SUPPLY"],
+        "layer_1_mp_shock_test" : ["MP_SHOCK"]
+
+    }
+}
