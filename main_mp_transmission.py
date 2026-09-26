@@ -1,6 +1,6 @@
 from data_retrieval import run_data_retrieval
 from etl import prepare_and_harmonize_data
-from model_implementation import plot_model_results, run_model_10
+from model_implementation import run_model_10
 
 
 def main():
@@ -17,9 +17,6 @@ def main():
     time_span = ("2017-02-15", "2022-10-16")
     model_result, model_df = run_model_10(model_df, time_span=time_span)
     print(model_result.summary())
-
-    print("\n--- Running Layer 4: Results & Visualization ---")
-    plot_model_results(model_result, model_df)
 
 
 if __name__ == "__main__":
