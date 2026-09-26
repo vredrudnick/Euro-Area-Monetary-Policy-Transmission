@@ -6,7 +6,7 @@ The empirical framework builds on the approach of Najjar and Shapiro (2026) and 
 
 For a brief overview of the research question, methodology, and results, see:
 
-**[Project Overview](PROJECT_OVERVIEW.pdf)**
+**[Project Overview](MP_Transmission_overview.pdf)**
 
 ## Repository
 
